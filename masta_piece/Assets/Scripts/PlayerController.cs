@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     private ThirdPersonPlayerActions playerActions;
     private InputAction move;
-    
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Collider beanCollider;
+    [SerializeField] private Transform orientation;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float movementForce = 1f;
     [SerializeField] private float jumpForce = 5f;
@@ -30,11 +33,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        forceDirection.x += move.ReadValue<Vector2>().x * movementForce;
-        forceDirection.z += move.ReadValue<Vector2>().y * movementForce;
+        //forceDirection.x += move.ReadValue<Vector2>().x * movementForce;
+        //forceDirection.z += move.ReadValue<Vector2>().y * movementForce;
+
+        forceDirection = orientation.forward * move.ReadValue<Vector2>().y +
+                         orientation.right * move.ReadValue<Vector2>().x;
         
-        rb.AddForce(forceDirection, ForceMode.Impulse);
-        forceDirection = Vector3.zero;
+        rb.AddForce(forceDirection * movementForce, ForceMode.Impulse);
 
         if (rb.velocity.y < 0f) {
             rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
@@ -51,12 +56,14 @@ public class PlayerController : MonoBehaviour
         print("Is try jump " + IsGrounded());
         if (IsGrounded()) {
             print("Try jump and ground");
-            forceDirection += Vector3.up * jumpForce;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
-    private bool IsGrounded() {
-        //Ray ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
-        return Physics.Raycast(transform.position, Vector3.down, 1 * 0.5f + 0.3f);
+    private bool IsGrounded()
+    {
+        return Physics.CheckCapsule(beanCollider.bounds.center,
+            new Vector3(beanCollider.bounds.center.x, beanCollider.bounds.min.y, beanCollider.bounds.center.z), 0.5f,
+            groundLayer);
     }
 }
