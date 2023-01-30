@@ -1,5 +1,5 @@
 {
-    "name": "PlayerActions",
+    "name": "ThirdPersonPlayerActions",
     "maps": [
         {
             "name": "Player",
@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "a2723206-a7ee-4b91-84fd-a361efaab787",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -57,7 +57,7 @@
                 {
                     "name": "WASD",
                     "id": "00ca640b-d935-4593-8157-c05846ea39b3",
-                    "path": "Dpad",
+                    "path": "Dpad(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
