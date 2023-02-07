@@ -134,4 +134,17 @@ public class PlayerController : MonoBehaviour
             rb.velocity = playerVelocity;
         }
     }
+
+    public void HandleEmotes(String emoteName) {
+        if (isGrounded) {
+            if (emoteName == "dab") {
+                //animatorManager.animator.SetBool("isDabbing", true);
+                animatorManager.PlayTargetAnimation("Dab", false);
+            }
+
+            if (emoteName == "flossing") {
+                animatorManager.PlayTargetAnimation("Floss", false);
+            }
+        }
+    }
 }

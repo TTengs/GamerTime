@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,7 +167,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   rayCastHeightOffset: 0.5
-  jumpingHeight: 3
+  jumpingHeight: 0.5
   gravityIntensity: -15
 --- !u!114 &47729916
 MonoBehaviour:
@@ -190,6 +190,9 @@ MonoBehaviour:
   moveAmount: 0
   sprint_button: 0
   jump_button: 0
+  skill_trigger: 0
+  shoot_trigger: 0
+  do_dab: 0
 --- !u!136 &47729917
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -220,7 +223,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &47729921
+--- !u!114 &47729919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,10 +232,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 47729913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a109a82b3e795949b9fcf0e41d56333, type: 3}
+  m_Script: {fileID: 11500000, guid: c44131c985cfe462d807ff054dbc2c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 47729920}
+--- !u!95 &47729920 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+  m_PrefabInstance: {fileID: 1049840313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &47729922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47729913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac1bc85020212c4fb7b408b8e4b72b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadzoneRadius: 0.2
+  activationRadius: 0.8
+  maxGestureDuration: 1
+  combos:
+  - name: Test
+    patterns:
+    - EA
+  _lastBucket: 0
+--- !u!114 &47729923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47729913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde4c77f09d91194f9b86aa085ac0367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballLiftHeight: 5
+  ballRb: {fileID: 0}
 --- !u!1 &109291573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,6 +1270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soccer Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 1975457108487340, guid: ec3e8f3ed27e2244caaedaf589590a03, type: 3}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     - target: {fileID: 4935240531098310, guid: ec3e8f3ed27e2244caaedaf589590a03, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1754,6 +1800,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0aa59f22f6841c54e95f37f43909c354, type: 2}
+    - target: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4710603824307187762, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_Layer
       value: 6

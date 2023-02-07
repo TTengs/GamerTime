@@ -71,6 +71,15 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skills"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8566601-3071-455d-8ca5-718f444e292c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -319,10 +328,10 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
                 {
                     ""name"": """",
                     ""id"": ""153d2f0e-c45f-41c0-9088-672962a4f4f2"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Sprinting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -333,8 +342,30 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Sprinting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b955d311-0fca-4800-b015-8b3ea67c847c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Skills"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3c78d90-a086-4e06-945d-79b937889eb3"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skills"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -855,6 +886,65 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Emotes"",
+            ""id"": ""292a7c74-107e-40c0-82d4-1bc900772731"",
+            ""actions"": [
+                {
+                    ""name"": ""Dab"",
+                    ""type"": ""Button"",
+                    ""id"": ""7cc5a001-f709-4c77-9cb5-2c978d562737"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Floss"",
+                    ""type"": ""Button"",
+                    ""id"": ""215ba97f-ede7-4b01-b5eb-306ecf1f3838"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""48fd6153-05ea-4cfb-8525-65448ac956f3"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a03c08c-b30b-4518-a7f6-7800edc74a2c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8afee1cc-8a33-4897-9625-010563657400"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Floss"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -927,6 +1017,7 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
         m_Player_Shooting = m_Player.FindAction("Shooting", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprinting = m_Player.FindAction("Sprinting", throwIfNotFound: true);
+        m_Player_Skills = m_Player.FindAction("Skills", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -939,6 +1030,10 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Emotes
+        m_Emotes = asset.FindActionMap("Emotes", throwIfNotFound: true);
+        m_Emotes_Dab = m_Emotes.FindAction("Dab", throwIfNotFound: true);
+        m_Emotes_Floss = m_Emotes.FindAction("Floss", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1003,6 +1098,7 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
     private readonly InputAction m_Player_Shooting;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprinting;
+    private readonly InputAction m_Player_Skills;
     public struct PlayerActions
     {
         private @ThirdPersonPlayerActions m_Wrapper;
@@ -1012,6 +1108,7 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
         public InputAction @Shooting => m_Wrapper.m_Player_Shooting;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprinting => m_Wrapper.m_Player_Sprinting;
+        public InputAction @Skills => m_Wrapper.m_Player_Skills;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1036,6 +1133,9 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
                 @Sprinting.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprinting;
                 @Sprinting.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprinting;
                 @Sprinting.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprinting;
+                @Skills.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkills;
+                @Skills.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkills;
+                @Skills.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkills;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1055,6 +1155,9 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
                 @Sprinting.started += instance.OnSprinting;
                 @Sprinting.performed += instance.OnSprinting;
                 @Sprinting.canceled += instance.OnSprinting;
+                @Skills.started += instance.OnSkills;
+                @Skills.performed += instance.OnSkills;
+                @Skills.canceled += instance.OnSkills;
             }
         }
     }
@@ -1164,6 +1267,47 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Emotes
+    private readonly InputActionMap m_Emotes;
+    private IEmotesActions m_EmotesActionsCallbackInterface;
+    private readonly InputAction m_Emotes_Dab;
+    private readonly InputAction m_Emotes_Floss;
+    public struct EmotesActions
+    {
+        private @ThirdPersonPlayerActions m_Wrapper;
+        public EmotesActions(@ThirdPersonPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Dab => m_Wrapper.m_Emotes_Dab;
+        public InputAction @Floss => m_Wrapper.m_Emotes_Floss;
+        public InputActionMap Get() { return m_Wrapper.m_Emotes; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EmotesActions set) { return set.Get(); }
+        public void SetCallbacks(IEmotesActions instance)
+        {
+            if (m_Wrapper.m_EmotesActionsCallbackInterface != null)
+            {
+                @Dab.started -= m_Wrapper.m_EmotesActionsCallbackInterface.OnDab;
+                @Dab.performed -= m_Wrapper.m_EmotesActionsCallbackInterface.OnDab;
+                @Dab.canceled -= m_Wrapper.m_EmotesActionsCallbackInterface.OnDab;
+                @Floss.started -= m_Wrapper.m_EmotesActionsCallbackInterface.OnFloss;
+                @Floss.performed -= m_Wrapper.m_EmotesActionsCallbackInterface.OnFloss;
+                @Floss.canceled -= m_Wrapper.m_EmotesActionsCallbackInterface.OnFloss;
+            }
+            m_Wrapper.m_EmotesActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Dab.started += instance.OnDab;
+                @Dab.performed += instance.OnDab;
+                @Dab.canceled += instance.OnDab;
+                @Floss.started += instance.OnFloss;
+                @Floss.performed += instance.OnFloss;
+                @Floss.canceled += instance.OnFloss;
+            }
+        }
+    }
+    public EmotesActions @Emotes => new EmotesActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1216,6 +1360,7 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
         void OnShooting(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprinting(InputAction.CallbackContext context);
+        void OnSkills(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1229,5 +1374,10 @@ public partial class @ThirdPersonPlayerActions : IInputActionCollection2, IDispo
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IEmotesActions
+    {
+        void OnDab(InputAction.CallbackContext context);
+        void OnFloss(InputAction.CallbackContext context);
     }
 }

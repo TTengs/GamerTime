@@ -45,22 +45,24 @@ public class CameraManager : MonoBehaviour {
     }
 
     private void RotateCamera() {
-        Vector3 rotation;
-        Quaternion targetRotation;
-        
-        lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed);
-        pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed);
-        pivotAngle = Mathf.Clamp(pivotAngle, minimumPivotAngle, maximumPivotAngle);
-        
-        rotation = Vector3.zero;
-        rotation.y = lookAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        transform.rotation = targetRotation;
+        if (!inputManager.skill_trigger) {
+            Vector3 rotation;
+            Quaternion targetRotation;
+            
+            lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed);
+            pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed);
+            pivotAngle = Mathf.Clamp(pivotAngle, minimumPivotAngle, maximumPivotAngle);
+            
+            rotation = Vector3.zero;
+            rotation.y = lookAngle;
+            targetRotation = Quaternion.Euler(rotation);
+            transform.rotation = targetRotation;
 
-        rotation = Vector3.zero;
-        rotation.x = pivotAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        cameraPivot.localRotation = targetRotation;
+            rotation = Vector3.zero;
+            rotation.x = pivotAngle;
+            targetRotation = Quaternion.Euler(rotation);
+            cameraPivot.localRotation = targetRotation;
+        }
     }
 
     private void HandleCameraCollisions() {
